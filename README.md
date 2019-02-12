@@ -11,7 +11,7 @@ AA210A_Functions.jl is a Julia module, and can be loaded by either directly `inc
 
 or by `using` it like a Julia module. For the latter method, the following line needs to be added to your `startup.jl` file or run in the REPL before `using` the module, since this will direct Julia to search your chosen directory for local modules rather than its internal module library.
 
-    push!(LOAD_PATH,"/Users/JBR132/Documents/_Stanford/AA210A Comp Flow")
+    push!(LOAD_PATH,"/...<filepath>.../<directory-containing-script>")
 
 Once this has been done, you just need to call:
 
