@@ -18,4 +18,7 @@ Once this has been done, you just need to call:
 
     using AA210A_Functions
 
-and Julia should recognize and load the module. Once the module has been loaded, you can type `?AA210A_Functions` to see a list of functions included in the module.
+and Julia should recognize and load the module. Once the module has been loaded, you can type `?AA210A_Functions` to see the module documentation, which includes a list of functions.
+
+## Improvements
+You can submit an issue if you want me to fix something or add another function, and I may or may not oblige.
