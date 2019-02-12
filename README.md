@@ -5,7 +5,7 @@ Material from "AA210A Course Reader: Fundamentals of Compressible Flow" by Prof.
 https://web.stanford.edu/~cantwell/
 
 ## Usage
-AA210A_Functions.jl is a Julia module, and can be loaded by either directly `include()`-ing it after opening the REPL as you would any other Julia script, like so:
+AA210A_Functions.jl is a Julia module, and can be loaded by either directly `include`-ing it after opening the REPL as you would any other Julia script, like so:
 
     include("/...<filepath>.../AA210A_Functions.jl")
 
