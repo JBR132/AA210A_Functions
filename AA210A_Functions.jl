@@ -659,17 +659,17 @@ OblShock, deflang, Mach2Obl, T2T1Obl, P2P1Obl, Pt2Pt1Obl, r2r1Obl
 """
 function deflangsol(which::String,gamma::Real,Mach::Real,bguess::Real,knownang::Real)
   curval = deflang(gamma,Mach,bguess)
-  if which == "strong"
-    if abs(curval - knownang)/knownang < 1e-5
-      return round(bguess,digits=4)
+  if which == "weak"
+    if abs(curval - knownang)/knownang < 1e-4
+      return round(bguess,digits=2)
     elseif curval > knownang
       deflangsol(which,gamma,Mach,0.9*bguess,knownang)
     elseif curval < knownang
       deflangsol(which,gamma,Mach,1.1*bguess,knownang)
     end
-  elseif which == "weak"
-    if abs(curval - knownang)/knownang < 1e-5
-      return round(bguess,digits=4)
+  elseif which == "strong"
+    if abs(curval - knownang)/knownang < 1e-4
+      return round(bguess,digits=2)
     elseif curval < knownang
       deflangsol(which,gamma,Mach,0.9*bguess,knownang)
     elseif curval > knownang
@@ -678,9 +678,9 @@ function deflangsol(which::String,gamma::Real,Mach::Real,bguess::Real,knownang::
   end
 end
 function deflangsol(which::String,gamma::Real,Mach::Real,knownang::Real) #Alternative Method to dircumvent initial guess
-  if which == "strong"
+  if which == "weak"
     deflangsol(which,gamma,Mach,10,knownang)
-  elseif which == "weak"
+  elseif which == "strong"
     deflangsol(which,gamma,Mach,90,knownang)
   end
 end
