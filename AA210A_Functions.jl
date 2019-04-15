@@ -553,9 +553,9 @@ Calculates the oblique shock jump relation selected by 'which' for an ideal gas 
 - "P" -> Static pressure ratio across shock, 'P2/P1' _Eqn. 12.7_
 - "Pt" -> Stagnation pressure ratio across shock, 'Pt2/Pt1' _Eqn. 12.7_
 - "r" -> Density ratio across shock, 'r2/r1' _Eqn. 12.7_
-- "thetaS"/"θS" -> Strong shock solution for shock angle, 'beta' _Eqn. 12.15_
+- "betaS"/"βS" -> Strong shock solution for shock angle, 'beta' _Eqn. 12.15_
   - Requires Syntax: OblShock(which,gam,M,theta)
-- "thetaW"/"θW" -> Weak shock solution for shock angle, 'beta' _Eqn. 12.15_
+- "betaW"/"βW" -> Weak shock solution for shock angle, 'beta' _Eqn. 12.15_
   - Requires Syntax: OblShock(which,gam,M,theta)
 - "M" -> Mach number immediately after shock, 'M2' _Eqn. 12.7_
   - Requires Syntax: OblShock(which,gam,M,beta,theta)
@@ -583,9 +583,9 @@ function OblShock(which::String,gamma::Real,Mach::Real,beta::Real)
     Pt2Pt1Obl(gamma,Mach,beta)
   elseif which == "r"
     r2r1Obl(gamma,Mach,beta)
-  elseif which == "thetaS" || which == "θS"
+  elseif which == "betaS" || which == "βS"
     deflangsol("strong",gamma,Mach,theta)
-  elseif which == "thetaW" || which == "θW"
+  elseif which == "betaW" || which == "βW"
     deflangsol("weak",gamma,Mach,theta)
   end
 end
@@ -913,7 +913,7 @@ aratio, Fanno, Rayleigh, spdofsnd, NormShock, OblShock
 function aratiosol(which::String,gamma::Real,AstarA::Real,Mguess::Real)
   global curval = aratio(gamma,Mguess)
   if which == "sup"
-    if abs(curval - AstarA)/AstarA < 1e-5
+    if abs(curval - AstarA)/AstarA < 1e-4
       return round(Mguess,digits=4)
     elseif curval < AstarA
       aratiosol(which,gamma,AstarA,0.9*Mguess)
@@ -921,7 +921,7 @@ function aratiosol(which::String,gamma::Real,AstarA::Real,Mguess::Real)
       aratiosol(which,gamma,AstarA,1.1*Mguess)
     end
   elseif which == "sub"
-    if abs(curval - AstarA)/AstarA < 1e-5
+    if abs(curval - AstarA)/AstarA < 1e-4
       return round(Mguess,digits=4)
     elseif curval > AstarA
       aratiosol(which,gamma,AstarA,0.9*Mguess)
